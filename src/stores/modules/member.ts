@@ -15,7 +15,7 @@ export const useMemberStore = defineStore(
 
     // 清理会员信息，退出时使用
     const clearProfile = () => {
-      profile.value = undefined
+      profile.value = null
     }
 
     // 记得 return
@@ -27,6 +27,15 @@ export const useMemberStore = defineStore(
   },
   // TODO: 持久化
   {
-    persist: true,
+    persist: {
+      storage: {
+        setItem(key, value) {
+          uni.setStorageSync(key, value)
+        },
+        getItem(key) {
+          return uni.getStorageSync(key)
+        },
+      },
+    },
   },
 )

@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <view class="login">login</view>
+  <view class="login">wqsh </view>
 </template>
 
 <style lang="scss">
