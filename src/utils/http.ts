@@ -36,11 +36,11 @@ interface Data<T> {
 }
 // 请求数据包装
 export const http = <T>(option: UniApp.RequestOptions) => {
-  return new Promise((resolve, reject) => {
+  return new Promise<Data<T>>((resolve, reject) => {
     uni.request({
       ...option,
       success: (res) => {
-        if (res.statusCode > 200 && res.statusCode < 300) {
+        if (res.statusCode >= 200 && res.statusCode < 300) {
           resolve(res.data as Data<T>)
         } else if (res.statusCode === 401) {
           memberStore.clearProfile()
@@ -59,6 +59,7 @@ export const http = <T>(option: UniApp.RequestOptions) => {
           icon: 'none',
           title: '网络异常',
         })
+        reject(err)
       },
     })
   })

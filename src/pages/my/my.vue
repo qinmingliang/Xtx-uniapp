@@ -3,9 +3,12 @@ import { useMemberStore } from '@/stores'
 import { http } from '@/utils/http'
 const memberStore = useMemberStore()
 const getData = async () => {
-  const res = await http<number[]>({
+  const res = await http({
     method: 'GET',
-    url: '/member/profile',
+    url: '/home/banner',
+    data: {
+      distributionSite: 1,
+    },
   })
   console.log(res, 'res数据')
 }

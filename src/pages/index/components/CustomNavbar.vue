@@ -1,5 +1,10 @@
 <script setup lang="ts">
+import { onMounted, ref } from 'vue'
+const emit = defineEmits(['updatesafeAreaInsets'])
 const { safeAreaInsets } = uni.getSystemInfoSync()
+onMounted(() => {
+  emit('updatesafeAreaInsets', safeAreaInsets)
+})
 </script>
 
 <template>
